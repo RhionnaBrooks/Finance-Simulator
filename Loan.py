@@ -15,7 +15,7 @@ def monthly_payment(self):
        payment = (P * r) / (1 - (1 + r) ** -n)
         return payment
         
-$ update balance each month(with randomness) 
+# update balance each month(with randomness) 
 def update_ balance(self, payment): 
     #small random change in interest rate 
   random_change = random.uniform(-0.002, 0.002)
