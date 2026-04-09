@@ -1,5 +1,6 @@
 
-#function defintion 1
+
+
 def Userincome (): 
     while True :
         try:
@@ -15,12 +16,11 @@ def Userincome ():
           
     
 # income = Userincome()    
-
-#function definiton 2
+    
 def Expenses_Details ():
     while True :
         try:
-            # inner while true loop used to check the input value of the respective expenses 
+            # inner while true loop used to test the input value of the respective expenses 
             while True:
                 food = round(float(input("\nEnter total food expense: ")),2)
                 if food <= 0 :
@@ -76,6 +76,10 @@ def Expenses_Details ():
             total_exp = sum (expenses.values())
             max_expense = max (expenses.values())
             min_expense = min (expenses.values())
+            count = len(expenses)
+            
+            import statistics as stats
+            average = round (stats.mean(expenses.values()), 2)
     
             max_item = " "
             min_item = " "
@@ -89,6 +93,8 @@ def Expenses_Details ():
         
             print ("\n~~~~~ EXPENSES SUMMARY ~~~~~~~~")
             print ("Total yearly expenses : ", total_exp)
+            print ("Number of expenses : ", count)
+            print ("Average amount of money spent on expenses : ", average)
             print ("Maximum amount of money was spent on:",max_item ,"-","$",max_expense)
             print ("Minimum amount of money was spent on:", min_item, "-","$",min_expense)
             
@@ -98,11 +104,11 @@ def Expenses_Details ():
             
         except ValueError :
            print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
-            
+           
 #unpacking the tuple         
 total_exp, max_item, max_expense = Expenses_Details()
 
-#function definition 3      
+        
 def balance ( income , total_exp):
    remaining_bal = income - total_exp
    if remaining_bal <= 0:
@@ -114,7 +120,7 @@ def balance ( income , total_exp):
  
 # Calculate_bal = balance(income, total_exp)
     
-# function defintion 4
+
 def BudgetAdvice (max_item , max_expense):
     print ("\n~~~~~~~ BUDGET ADVICE ~~~~~~~ ")
     if max_item == "mortgage" :
@@ -137,4 +143,4 @@ def BudgetAdvice (max_item , max_expense):
                 "\n Please cut back on these expenses")
         
 # advice = BudgetAdvice(max_item, max_expense)    
-       
+   
