@@ -98,7 +98,7 @@ def Expenses_Details ():
             
         except ValueError :
            print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
-           break
+            
 #unpacking the tuple         
 total_exp, max_item, max_expense = Expenses_Details()
 
