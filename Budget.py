@@ -138,7 +138,3 @@ def BudgetAdvice (max_item , max_expense):
         
 # advice = BudgetAdvice(max_item, max_expense)    
        
-    
-
-
-
