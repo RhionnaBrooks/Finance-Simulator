@@ -19,7 +19,7 @@ def Userincome ():
 def Expenses_Details ():
     while True :
         try:
-            
+            #dictionary used to store the name and values of each expense
             expenses = {
             "food" : round(float(input("Enter total amount spent on food : ")),2),
             "mortgage" :round(float(input("Enter total mortgage or rent expense: ")),2),
