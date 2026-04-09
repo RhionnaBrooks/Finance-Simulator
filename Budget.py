@@ -35,12 +35,12 @@ def Expenses_Details ():
             max_item = " "
             min_item = " "
     
-            for name in expenses :
+            for key in expenses : # loop used to check each key in the dictionary
             
-                if expenses[name] == max_expense:
-                    max_item = name
-                elif expenses [name] == min_expense:
-                    min_item = name
+                if expenses[key] == max_expense: # compares the key to see if it matches with the value of the maximum exp
+                    max_item = key
+                elif expenses [key] == min_expense:
+                    min_item = key
         
       
             print ("Total yearly expenses : ", total_exp)
