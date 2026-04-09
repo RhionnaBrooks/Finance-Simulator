@@ -20,7 +20,7 @@ def Userincome ():
 def Expenses_Details ():
     while True :
         try:
-            # inner while true loop used to test the input value of the respective expenses 
+            # inner while true loop used to check the input value of the respective expenses 
             while True:
                 food = round(float(input("\nEnter total food expense: ")),2)
                 if food <= 0 :
