@@ -1,15 +1,13 @@
-
-
-
+                                
 def Userincome (): 
-    while True :
+    while True: # outer while true loop is used to restart the function until the user enters a numeric value for income
         try:
             income = int(input("Enter your monthly income after taxes : "))
             
             if income <= 0 :
                 print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
             else:
-                print ("Total monthly income : ", income)
+                print ("Total monthly income: ", income)
                 return income
         except ValueError:
             print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
@@ -18,9 +16,9 @@ def Userincome ():
 # income = Userincome()    
     
 def Expenses_Details ():
-    while True :
+    while True: # outer while true used to restart the function until the user enters a numeric value for the expenses
         try:
-            # inner while true loop used to test the input value of the respective expenses 
+            # inner while true loop used to check if the input value of the respective expenses is valid
             while True:
                 food = round(float(input("\nEnter total food expense: ")),2)
                 if food <= 0 :
