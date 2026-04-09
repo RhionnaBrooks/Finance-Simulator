@@ -137,16 +137,7 @@ def BudgetAdvice (max_item , max_expense):
                 "\n Please cut back on these expenses")
         
 # advice = BudgetAdvice(max_item, max_expense)    
-    
-        
-        
-        
-    
-
-
-    
-
-    
+       
     
 
 
