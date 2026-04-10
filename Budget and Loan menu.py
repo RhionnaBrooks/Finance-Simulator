@@ -67,12 +67,8 @@ def monthly_expense_analyzer():
     return total , max_item , highest 
  
 
-
-# Run the analyzer
-#total, max_item ,highest = monthly_expense_analyzer()
-
         
-def balance ( income , total):
+def balance ( income, total):
    remaining_bal = income - total
    if remaining_bal <= 0:
        print("\n WARNING! You have a negative or break even balance!")
@@ -137,7 +133,7 @@ class Loan:
         print(f"\n Repayment Schedule (Initial Rate: {self.base_rate*100:.2f}%)")
         
         for month in range(1, self.months + 1):
-            # Random "market fluctuation"
+            # Random "market fluctuations"
             # Interest rate changes slightly each month (e.g., +/- 0.5%)
             fluctuation = random.uniform(-0.005, 0.005)
             current_rate = self.base_rate + fluctuation
@@ -183,10 +179,6 @@ def run_loan_simulation():
         years = int(input("Enter repayment period (years): "))
 
         return amt , rate , years
-        # OOP implementation
-        user_loan = Loan(amt, rate, years)
-        user_loan.generate_schedule()
-        user_loan.display_summary()
         
      except ValueError :
         print("Invalid input. Enter a numeric value!")
