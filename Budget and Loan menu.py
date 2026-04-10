@@ -215,7 +215,10 @@ while choice <= 3 :
         advice = BudgetAdvice(max_item, highest)
         
     #if choice == 2 :
-        
+        amt, rate, years = loan_user_input()
+        user_loan = Loan(amt, rate, years)
+        user_loan.generate_schedule()
+        user_loan.display_summary()
     
 
 
