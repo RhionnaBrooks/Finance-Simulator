@@ -10,10 +10,10 @@ def Userincome ():
                 print ("Total monthly income : ", income)
                 return income
         except ValueError:
-            print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
+            print ("Invalid input. Enter a numeric value!")
+            # exception handling - tells the users what values are permitted
           
     
-#income = Userincome()    
 
 def monthly_expense_analyzer():
     
@@ -81,7 +81,6 @@ def balance ( income , total):
        print ("Your remaining balance for the year is : ","$", remaining_bal)
        return remaining_bal
  
-#Calculate_bal = balance(income, total)
     
 
 def BudgetAdvice (max_item , highest):
@@ -105,10 +104,7 @@ def BudgetAdvice (max_item , highest):
     elif max_item == "Other":
         print ( f"You spent the most amount of money on {max_item} :${highest}" +
                 "\n Please cut back on these expenses")
-        print ('''                                        ''')
-
-#advice = BudgetAdvice(max_item, highest)    
-
+   
 
 
 import random
@@ -175,29 +171,27 @@ class Loan:
         # Statistics 
         avg_payment = sum(item['Payment'] for item in self.repayment_schedule) / self.months
         print("-" * 40)
-        print(f"Total Repayment: ${sum(item['Payment'] for item in self.repayment_schedule):.2g}")
+        print(f"Total Repayment: ${sum(item['Payment'] for item in self.repayment_schedule):.2f}")
         print(f"Average Monthly Payment: ${avg_payment:.2f}")
 
 def run_loan_simulation():
     #  User system and Exception handling
      print("\n Loan Repayment Simulator")
-    try:
+     try:
         amt = float(input("Enter loan amount: "))
         rate = float(input("Enter annual interest rate (e.g., 5 for 5%): "))
         years = int(input("Enter repayment period (years): "))
 
+        return amt , rate , years
         # OOP implementation
         user_loan = Loan(amt, rate, years)
         user_loan.generate_schedule()
         user_loan.display_summary()
-
-    except ValueError :
+        
+     except ValueError :
         print("Invalid input. Enter a numeric value!")
         
 
-
-
-    
         
 #main function
 choice = 0
@@ -214,11 +208,19 @@ while choice <= 3 :
         Calculate_bal = balance(income, total)
         advice = BudgetAdvice(max_item, highest)
         
-    #if choice == 2 :
-        amt, rate, years = loan_user_input()
+    elif choice == 2 :
+        amt, rate, years = run_loan_simulation()
         user_loan = Loan(amt, rate, years)
         user_loan.generate_schedule()
         user_loan.display_summary()
+         
+    elif choice == 3:
+        print ("Exiting.............")
+        break
+    
+    else:
+        print("Invalid Choice !")
+        choice = 0
     
 
 
@@ -226,6 +228,7 @@ while choice <= 3 :
 
     
     
+
 
 
 
