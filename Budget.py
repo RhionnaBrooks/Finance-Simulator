@@ -1,144 +1,120 @@
-                                
+
+
+
 def Userincome (): 
-    while True: # outer while true loop is used to restart the function until the user enters a numeric value for income
+    while True :  #while true loop is used to restart the function until the user enters a valid entry for income
         try:
             income = int(input("Enter your monthly income after taxes : "))
             
             if income <= 0 :
                 print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
             else:
-                print ("Total monthly income: ", income)
+                print ("Total monthly income : ", income)
                 return income
         except ValueError:
             print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
           
     
-# income = Userincome()    
+income = Userincome()    
+
+def monthly_expense_analyzer():
     
-def Expenses_Details ():
-    while True: # outer while true used to restart the function until the user enters a numeric value for the expenses
-        try:
-            # inner while true loop used to check if the input value of the respective expenses is valid
-            while True:
-                food = round(float(input("\nEnter total food expense: ")),2)
-                if food <= 0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-           
-            while True :
-                
-                mortgage = round(float(input("Enter total mortgage or rent expense: ")),2)
-                if mortgage <= 0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-            while True:
-                telephone = round(float(input("Enter total telephone expense : ")),2)
-                if telephone <=0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-               
-            while True :
-                water =  round(float(input("Enter total water expense : ")),2)
-                if water <= 0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-                
-            while True :
-                electricity = round(float(input("Enter total electricity expense : ")),2)
-                if electricity <= 0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-            while True :
-                other_exp = round(float(input("Enter total other expenses : ")),2)
-                if other_exp <= 0 :
-                    print ("Invalid amount entered." +  " Inputs can not be zero or negative.\nTry again!")
-                else:
-                    break
-                
-            # dictionary used to store the name and values of each expense
-            expenses = {
-            "food" :  food ,
-            "mortgage" :mortgage,
-            "telephone" : telephone,
-            "water" : water,
-            "electricity" : electricity ,
-            "other expenses" : other_exp
-            }
-            
-            
-            total_exp = sum (expenses.values())
-            max_expense = max (expenses.values())
-            min_expense = min (expenses.values())
-            count = len(expenses)
-            
-            import statistics as stats
-            average = round (stats.mean(expenses.values()), 2)
+    categories = ["Food", "Rent", "Phone", "Water", "Power", "Other"]
+    expenses = []
     
-            max_item = " "
-            min_item = " "
+    print("\n" + "="*30)
+    print("   MONTHLY EXPENSE TRACKER")
+    print("="*30)
     
-            for key in expenses : # loop used to check each key in the dictionary
-            
-                if expenses[key] == max_expense: # compares the value of key to see if it matches with the value of the maximum exp
-                    max_item = key
-                if expenses [key] == min_expense:
-                    min_item = key
-        
-            print ("\n~~~~~ EXPENSES SUMMARY ~~~~~~~~")
-            print ("Total yearly expenses : ", total_exp)
-            print ("Number of expenses : ", count)
-            print ("Average amount of money spent on expenses : ", average)
-            print ("Maximum amount of money was spent on:",max_item ,"-","$",max_expense)
-            print ("Minimum amount of money was spent on:", min_item, "-","$",min_expense)
-            
-            #python stores multiple return statements as a tuple
-            return total_exp, max_item , max_expense 
-           
-            
-        except ValueError :
-           print ("Invalid input. Enter a numeric value!") # exception handling - tells the users what values are permitted
-           
-#unpacking the tuple         
-total_exp, max_item, max_expense = Expenses_Details()
+   
+    for item in categories:
+        while True:  #while true loop is used to restart the function until the user enters a valid entry for amount
+            try:
+              
+                amount = int(input(f"Enter {item} amount ($): "))
+                
+                if amount < 0:
+                    print("Amount cannot be negative. Try again.")
+                else:
+                    expenses.append(amount) # updates the list
+                    break
+            except ValueError:
+                print("Invalid input. Please enter a whole number.")
+    
+   
+    count = len(expenses)
+    total = sum(expenses)
+   
+    avg = total / count if count > 0 else 0
+   
+    highest = max(expenses)
+    lowest = min(expenses)
+    spending_range = highest - lowest
+    
+    maxitem_index = expenses.index(highest) #used to find the index of the highest value in the list
+    max_item = categories [maxitem_index]  # used to store the value of the highest value to the name in the corresponding index
+
+    
+    print("\n" + "*"*30)
+    print("      FINANCIAL REPORT")
+    print("*"*30)
+    print(f"1. Total Count:     {count} categories")
+    print(f"2. Total Spent:     ${total}")
+    print(f"3. Average Spent:   ${avg:.2f}")
+    print(f"4. Highest Bill:    ${highest}")
+    print(f"5. Lowest Bill:     ${lowest}")
+    print(f"6. Spending Range:  ${spending_range}")
+    print("*"*30)
+
+   #python stores multiple return statements as a tuple
+    return total , max_item , highest 
+ 
+
+
+# Run the analyzer by unpacking the tuple
+total, max_item ,highest = monthly_expense_analyzer()
 
         
-def balance ( income , total_exp):
-   remaining_bal = income - total_exp
+def balance ( income , total):
+   remaining_bal = income - total
    if remaining_bal <= 0:
        print("\n WARNING! You have a negative or break even balance!")
        print ("Your balance for the year is : ", remaining_bal)
    else:
-       print ("Your remaining balance for the year is : ", remaining_bal)
+       print ("Your remaining balance for the year is : ","$", remaining_bal)
        return remaining_bal
  
-# Calculate_bal = balance(income, total_exp)
+Calculate_bal = balance(income, total)
     
 
-def BudgetAdvice (max_item , max_expense):
+def BudgetAdvice (max_item , highest):
     print ("\n~~~~~~~ BUDGET ADVICE ~~~~~~~ ")
-    if max_item == "mortgage" :
-        print ( f"You spent the most amount of money on {max_item} : ${max_expense}" + "\n This is a fixed expense so payments can not be minimized" +
-        " \nTry to cut back on the  remaining expenses")
-    elif max_item == "food" :
-        print ( f"You spent the most amount of money on {max_item} :${max_expense}" +
+    if max_item == "Food" :
+        print ( f"You spent the most amount of money on {max_item} :${highest}" +
                 "\nPlease try to cut back on this expense and only purchase essential items")
-    elif max_item == "telephone" :
-        print ( f"You spent the most amount of money on {max_item} :${max_expense}" +
+    elif max_item == "Phone" :
+        print ( f"You spent the most amount of money on {max_item} :${highest}" +
                "\nTry to find cheaper ISPs in your area")
-    elif max_item == "water" :
-        print ( f"You spent the most amount of money on {max_item} :${max_expense}" +
+    elif max_item == "Water" :
+        print ( f"You spent the most amount of money on {max_item} :${highest}" +
                 "\nTry to conserve more water ")
-    elif max_item == "electricity":
-        print ( f"You spent the most amount of money on {max_item} :${max_expense}" +
+    elif max_item == "Power":
+        print ( f"You spent the most amount of money on {max_item} :${highest}" +
                 "\nTry to conserve more electricity ")
-    elif max_item == "other expenses":
-        print ( f"You spent the most amount of money on {max_item} :${max_expense}" +
+    elif max_item == "Other":
+        print ( f"You spent the most amount of money on {max_item} :${highest}" +
                 "\n Please cut back on these expenses")
         
-# advice = BudgetAdvice(max_item, max_expense)    
-   
+advice = BudgetAdvice(max_item, highest)    
+    
+        
+        
+        
+    
+
+
+    
+
+    
+    
+
